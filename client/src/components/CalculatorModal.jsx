@@ -3,13 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calculator, DollarSign, Calendar, TrendingUp, Sparkles, ArrowRight, ChevronDown } from 'lucide-react';
 
 const COIN_DATA = [
-    { id: 'USDT', name: 'USDT', symbol: 'USDT', rate: 5, period: 'Monthly', color: '#F3BA2F', letter: 'U' },
-    { id: 'DOGE', name: 'Dodge', symbol: 'DOGE', rate: 3, period: 'Monthly', color: '#BA9F33', letter: 'D' },
-    { id: 'XRP', name: 'XRP', symbol: 'XRP', rate: 3, period: 'Monthly', color: '#33BAA0', letter: 'X' }, // Custom color for differentiation
-    { id: 'ETH', name: 'Ethereum', symbol: 'ETH', rate: 2.7, period: 'Monthly', color: '#627EEA', letter: 'E' },
-    { id: 'SOL', name: 'Solana', symbol: 'SOL', rate: 2.9, period: 'Monthly', color: '#14F195', letter: 'S' },
-    { id: 'BNB', name: 'BNB', symbol: 'BNB', rate: 2.91, period: 'Monthly', color: '#F3BA2F', letter: 'B' },
-    { id: 'BTC', name: 'Bitcoin', symbol: 'BTC', rate: 3.1, period: 'Monthly', color: '#F7931A', letter: 'B' },
+    { id: 'USDT', name: 'USDT', symbol: 'USDT', rate: 8, period: 'Daily', color: '#F3BA2F', letter: 'U' },
 ];
 
 const CalculatorModal = ({ isOpen, onClose }) => {
@@ -118,8 +112,8 @@ const CalculatorModal = ({ isOpen, onClose }) => {
                                     </label>
                                     <div className="relative">
                                         <button
-                                            onClick={() => setShowCoinDropdown(!showCoinDropdown)}
-                                            className="w-full pl-4 pr-4 py-3 bg-white border-2 border-gray-100 rounded-xl hover:border-[#D4AF37] focus:border-[#D4AF37] flex items-center justify-between transition-all"
+                                            onClick={() => COIN_DATA.length > 1 && setShowCoinDropdown(!showCoinDropdown)}
+                                            className={`w-full pl-4 pr-4 py-3 bg-white border-2 border-gray-100 rounded-xl ${COIN_DATA.length > 1 ? 'hover:border-[#D4AF37] focus:border-[#D4AF37] cursor-pointer' : 'cursor-default'} flex items-center justify-between transition-all`}
                                         >
                                             <div className="flex items-center gap-3">
                                                 <div
@@ -133,7 +127,9 @@ const CalculatorModal = ({ isOpen, onClose }) => {
                                                     <div className="text-[10px] text-gray-400 font-bold">{selectedCoin.rate}% {selectedCoin.period}</div>
                                                 </div>
                                             </div>
-                                            <ChevronDown className={`text-gray-400 transition-transform ${showCoinDropdown ? 'rotate-180' : ''}`} size={20} />
+                                            {COIN_DATA.length > 1 && (
+                                                <ChevronDown className={`text-gray-400 transition-transform ${showCoinDropdown ? 'rotate-180' : ''}`} size={20} />
+                                            )}
                                         </button>
 
                                         {/* Dropdown Menu */}
