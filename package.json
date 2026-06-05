@@ -1,0 +1,13 @@
+{
+  "name": "cryptodxb-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "build": "npm run build --prefix client",
+    "vercel-build": "npm run build --prefix client"
+  }
+}
